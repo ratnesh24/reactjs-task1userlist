@@ -1,106 +1,108 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
 
-class UserList extends Component {
+class UserList extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      users: [],
+      currentPage: 1,
+      total_users: 1,
+      listPerPage: 1,
+      total_pages: 1,
+      api: "https://reqres.in/api/users?page=1"
+    };
+    this.handleClick = this.handleClick.bind(this);
+  }
 
+  async handleClick(event) {
+    await this.setState({
+      currentPage: Number(event.target.id),
+      api: "https://reqres.in/api/users?page=" + event.target.id
+    });
+    this.fetchData(this.state.api);
+  }
 
-    state = {
-        users: null,
-        total: null,
-        per_page: null,
-        current_page: 1
-    }
+  componentDidMount() {
+    this.fetchData(this.state.api);
+  }
 
-
-    componentDidMount() {
-        this.makeHttpRequestWithPage(1);
-    }
-
-
-    makeHttpRequestWithPage = async pageNumber => {
-        const response = await fetch(`https://reqres.in/api/users?page=${pageNumber}`, {
-            method: 'GET',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-            },
-        });
-
-        const data = await response.json();
-
+  fetchData = api => {
+    fetch(api)
+      .then(response => response.json())
+      .then(details => {
         this.setState({
-            users: data.data,
-            total: data.total,
-            per_page: data.per_page,
-            current_page: data.page
+          users: details.data,
+          //currentPage: details.page,
+          total_users: details.total,
+          listPerPage: details.per_page,
+          total_pages: details.total_pages
         });
+      });
+  };
+
+  render() {
+    const { users, total_users, total_pages } = this.state;
+    //console.log(this.state.users);
+    //Logic For Displaying current List
+    // const indexOfLastList = currentPage * listPerPage;
+    // const indexOfFirstList = i   ndexOfLastList - listPerPage;
+    // const currentList = users.slice(indexOfFirstList, indexOfLastList);
+
+    //Displaying Page Number
+    const pageNumber = [];
+    for (let i = 1; i <= total_pages; i++) {
+      pageNumber.push(i);
     }
 
+    const renderPageNumber = pageNumber.map(number => {
+      return (
+        <li key={number} id={number} onClick={this.handleClick}>
+          {number}
+        </li>
+      );
+    });
 
-    render() {
+    return (
+      <>
+        <div className="userlist_main">
+          <h1 className="title">
+            User list of <em>{total_users} users</em>
+          </h1>
 
-        let users, renderPageNumbers;
-
-        if (this.state.users !== null) {
-            users = this.state.users.map(user => (
-                <tr key={user.id}>
-                    <td>{user.id}</td>
-                    <td><img src={user.avatar} alt={user.first_name} style={{ height: '5rem', width: '5rem', }} /></td>
-                    <td>{user.first_name}</td>
-                    <td>{user.last_name}</td>
-                    <td><Link to={`/users/${user.id}`} className="btn text-white">View</Link></td>
-                </tr >
-            ));
-        }
-
-        const pageNumbers = [];
-        if (this.state.total !== null) {
-            for (let i = 1; i <= Math.ceil(this.state.total / this.state.per_page); i++) {
-                pageNumbers.push(i);
-            }
-
-
-            renderPageNumbers = pageNumbers.map(number => {
-                //let classes = this.state.current_page === number ? active : '';
-
+          <ul className="UserList">
+            {users.length ? (
+              users.map((item, i) => {
+                const { id, email, first_name, last_name, avatar } = item;
                 return (
-                    <li key={number} className={null} onClick={() => this.makeHttpRequestWithPage(number)}>{number}</li>
+                  <li key={id}>
+                    <span className="id">{id}</span>
+                    <Link to={`/user/${id}`}>
+                      <img src={avatar} alt={first_name} />
+                    </Link>
+                    <div className="details">
+                      <Link to={`/user/${id}`}>
+                        <strong>
+                          {first_name} {last_name}
+                        </strong>
+                      </Link>
+                      <Link to={`mailto:${email}`}>{email}</Link>
+                    </div>
+                  </li>
                 );
-            });
-        }
+              })
+            ) : (
+              <div>No data Available</div>
+            )}
+          </ul>
 
-        return (
-
-
-            <>
-                <h1 className="title">User List</h1>
-                <table className="table" border="0" cellPadding="0" cellSpacing="0">
-                    <thead>
-                        <tr>
-                            <th>S/N</th>
-                            <th>Avatar</th>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {users}
-                    </tbody>
-                </table>
-
-                <div className="pagination">
-                    <ul>
-                        <li onClick={() => this.makeHttpRequestWithPage(1)}>&laquo;</li>
-                        {renderPageNumbers}
-                        <li onClick={() => this.makeHttpRequestWithPage(1)}>&raquo;</li>
-                    </ul>
-                </div>
-
-            </>
-        );
-    }
-
+          <div className="pagination">
+            <ul>{renderPageNumber}</ul>
+          </div>
+        </div>
+      </>
+    );
+  }
 }
 
 export default UserList;
