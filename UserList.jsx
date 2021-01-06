@@ -77,11 +77,11 @@ class UserList extends React.Component {
                 return (
                   <li key={id}>
                     <span className="id">{id}</span>
-                    <Link to={`/user/${id}`}>
+                    <Link to={`/users/${id}`}>
                       <img src={avatar} alt={first_name} />
                     </Link>
                     <div className="details">
-                      <Link to={`/user/${id}`}>
+                      <Link to={`/users/${id}`}>
                         <strong>
                           {first_name} {last_name}
                         </strong>
