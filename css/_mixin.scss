@@ -1,0 +1,32 @@
+// mixin
+@mixin transition($time) {
+    transition: all $time linear;
+}
+
+/*********************
+BREAKPOINTS
+*********************/
+
+@mixin phoneP {
+    @media screen and (min-width: 420px) {
+        @content;
+    }
+}
+
+@mixin phoneL {
+    @media screen and (min-width: 620px) {
+        @content;
+    }
+}
+
+@mixin ipad {
+    @media screen and (min-width: 992px) {
+        @content;
+    }
+}
+
+@mixin desktop {
+    @media screen and (min-width: 1024px) {
+        @content;
+    }
+}

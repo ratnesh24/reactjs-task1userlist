@@ -1,12 +1,11 @@
 .UserList {
-    display        : flex;
-    justify-content: center;
-    flex-wrap      : wrap;
-    margin         : 0 auto;
-    padding        : 0;
-    list-style     : none;
-    width          : 90vw;
-    align-items    : center;
+    display              : grid;
+    grid-template-columns: repeat(1, 1fr);
+    margin               : 0 auto;
+    padding              : 0;
+    list-style           : none;
+    width                : 90vw;
+    align-items          : center;
 
     li {
         padding   : 1rem;
@@ -61,5 +60,13 @@
             }
 
         }
+    }
+
+    @include phoneL {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include ipad {
+        grid-template-columns: repeat(3, 1fr);
     }
 }
