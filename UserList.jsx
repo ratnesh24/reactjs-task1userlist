@@ -14,7 +14,6 @@ class UserList extends React.Component {
     };
     this.handleClick = this.handleClick.bind(this);
   }
-
   async handleClick(event) {
     await this.setState({
       currentPage: Number(event.target.id),
@@ -44,10 +43,6 @@ class UserList extends React.Component {
   render() {
     const { users, total_users, total_pages } = this.state;
     //console.log(this.state.users);
-    //Logic For Displaying current List
-    // const indexOfLastList = currentPage * listPerPage;
-    // const indexOfFirstList = i   ndexOfLastList - listPerPage;
-    // const currentList = users.slice(indexOfFirstList, indexOfLastList);
 
     //Displaying Page Number
     const pageNumber = [];
@@ -57,7 +52,12 @@ class UserList extends React.Component {
 
     const renderPageNumber = pageNumber.map(number => {
       return (
-        <li key={number} id={number} onClick={this.handleClick}>
+        <li
+          key={number}
+          id={number}
+          onClick={this.handleClick}
+          className={this.state.currentPage === number ? "active" : ""}
+        >
           {number}
         </li>
       );

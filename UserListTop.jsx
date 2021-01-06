@@ -6,8 +6,8 @@ class UserList extends Component {
 
     state = {
         users: null,
-        total: null,
-        per_page: null,
+        total: 1,
+        per_page: 1,
         current_page: 1
     }
 
@@ -61,10 +61,14 @@ class UserList extends Component {
 
 
             renderPageNumbers = pageNumbers.map(number => {
-                //let classes = this.state.current_page === number ? active : '';
+                let classes = this.state.current_page === number ? 'active' : '';
 
                 return (
-                    <li key={number} className={null} onClick={() => this.makeHttpRequestWithPage(number)}>{number}</li>
+                    <li key={number}
+                        className={classes}
+                        onClick={() => this.makeHttpRequestWithPage(number)}>
+                        {number}
+                    </li>
                 );
             });
         }
