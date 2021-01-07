@@ -43,6 +43,12 @@ b {
 
 a {
     text-decoration: none;
+    color          : $primary;
+
+    &:hover,
+    &:focus {
+        color: $accent;
+    }
 }
 
 h1,
@@ -68,6 +74,25 @@ h3 {
 
 h4 {
     font-size: 2.5rem;
+}
+
+h1.title {
+    font-size : 2.6rem;
+    text-align: center;
+    padding   : 2rem 0;
+    color     : $accent;
+}
+
+h2.title {
+    font-size: 2.2rem;
+    padding  : 0 0 1rem;
+    color    : $accent;
+}
+
+h3.title {
+    font-size: 2.2rem;
+    padding  : 0 0 1rem;
+    color    : $accent;
 }
 
 .text-title {
@@ -146,6 +171,7 @@ li {
     border          : 0 none;
     transform-origin: 0 100%;
     background-color: $primary;
+    color           : $white;
 
     &:hover,
     &:focus,
@@ -178,6 +204,11 @@ section {
     width   : 100vw;
 }
 
+
+.ma-auto {
+    margin: auto;
+}
+
 .ma0 {
     margin: 0;
 }
@@ -200,4 +231,12 @@ section {
 
 .pa0 {
     padding: 0;
+}
+
+.box {
+    border-radius: 0.6rem;
+    border       : 0.1rem solid $shadow;
+    width        : auto;
+    padding      : 2rem;
+    box-shadow   : 0 3rem 5rem -2rem rgba($color: $black, $alpha: 0.3);
 }
