@@ -7,9 +7,9 @@ import UserListTop from './components/UserListTop'
 import UserDetail from './components/UserDetail';
 import Home from './Home';
 import Error404 from './404';
-
-
+import Protected from './components/Protected';
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
+
 
 
 
@@ -20,9 +20,16 @@ function App() {
       <Switch>
         <Route exact default strict path="/" component={Login} />
         <Route exact default strict path="/login" component={Login} />
-        <Route exact default strict path="/home" component={Home} />
-        <Route exact path="/users" component={UserListTop} />
-        <Route exact path="/users/:userID" component={UserDetail} />
+        <Route exact path="/home">
+          <Protected comp={Home} />
+        </Route>
+        <Route exact path="/users">
+          <Protected comp={UserListTop} />
+        </Route>
+
+        <Route exact path="/users/:userID">
+          <Protected comp={UserDetail} />
+        </Route>
         <Route exact path="/404" component={Error404} />
       </Switch>
       <Redirect to="/" />

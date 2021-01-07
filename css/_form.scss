@@ -1,44 +1,44 @@
 .form {
-  &.logReg {
-    width: auto;
-    max-width: 35rem;
-    margin: 0 auto;
-  }
-
-  input,
-  input[type="text"],
-  input[type="email"],
-  input[type="password"] {
-    width: 100%;
-    border-radius: 0.4rem;
-    border-color: $shadow;
-    border-width: 0.1rem;
-    padding: 1rem;
-    font-size: 1.4rem;
-    margin: 0.5rem 0 1rem;
-    transition: all 0.5s ease-in-out;
-
-    &:hover,
-    &:focus,
-    &:active,
-    &:active:focus {
-      border: 0.1rem solid rgba($color: $primary, $alpha: 0.55);
+    &.logReg {
+        width    : auto;
+        max-width: 35rem;
+        margin   : 0 auto;
     }
-  }
 
-  &.login {
-    width: auto;
-    margin: 2rem auto;
-  }
+    input,
+    input[type=text],
+    input[type=email],
+    input[type=password] {
+        width        : 100%;
+        border-radius: 0.4rem;
+        border-color : $shadow;
+        border-width : 0.1rem;
+        padding      : 1rem;
+        font-size    : 1.4rem;
+        margin       : 0.5rem 0 1rem;
+        transition   : all 0.5s ease-in-out;
 
-  .note {
-    font-size: 1.3rem;
-  }
+        &:hover,
+        &:focus,
+        &:active,
+        &:active:focus {
+            border: 0.1rem solid rgba($color: $primary, $alpha: 0.55);
+        }
+    }
 
-  .forgotPass {
-    float: right;
-    display: block;
-    text-align: right;
-    padding: 1rem 0;
-  }
+    &.login {
+        width : auto;
+        margin: 2rem auto;
+    }
+
+    .note {
+        font-size: 1.3rem;
+    }
+
+    .forgotPass {
+        float     : right;
+        display   : block;
+        text-align: right;
+        padding   : 1rem 0;
+    }
 }
