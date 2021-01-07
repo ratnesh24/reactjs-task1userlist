@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 //import PropTypes from 'prop-types';
 
 // Name
@@ -25,6 +25,12 @@ if (currHours > 1 && currHours < 12) {
     greetings = "Good Night"
 }
 
+function logout() {
+    //let isLogin = JSON.parse(localStorage.clear())
+
+    console.log(localStorage.clear())
+}
+
 //let welcomeMsg = ""
 class Header extends React.Component {
     render() {
@@ -38,6 +44,7 @@ class Header extends React.Component {
                             <li><NavLink to="/home">Home</NavLink></li>
                             <li><NavLink to="/users">User List</NavLink></li>
                             <li><NavLink to="/login">Login/Register</NavLink></li>
+                            <li><Link onClick={logout}>Logout</Link></li>
                         </ul>
                     </nav>
                 </header >
