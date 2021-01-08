@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 
-
 function tick() {
   ReactDOM.render(
     <React.StrictMode>
@@ -13,3 +12,4 @@ function tick() {
 }
 
 setInterval(tick, 1000);
+
