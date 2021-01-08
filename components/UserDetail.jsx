@@ -1,24 +1,26 @@
 import React from "react";
 //import preloader from "./img/preloader.svg";
-import { Redirect } from 'react-router-dom';
+import { Redirect, withRouter } from 'react-router-dom';
 
 class UserDetail extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             details: null,
-            error: null
+            error: null,
+            page: null
         };
     }
     componentDidMount() {
         fetch("https://reqres.in/api/users/" + this.props.match.params.userID)
             .then(response => response.json())
             .then(dataDetails => {
-                //console.warn(dataDetails.data)
+                console.warn(dataDetails.data)
                 dataDetails.data
                     ? this.setState({
                         details: [dataDetails.data],
-                        error: false
+                        error: false,
+                        // page: this.props.userID
                     })
                     : this.setState({
                         error: true
@@ -60,4 +62,4 @@ class UserDetail extends React.Component {
         );
     }
 }
-export default UserDetail;
+export default withRouter(UserDetail);
