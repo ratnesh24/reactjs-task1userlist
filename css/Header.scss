@@ -13,7 +13,7 @@ header {
         font-size  : 1.4rem;
         font-weight: 400;
         margin     : 0;
-        padding    : 0;
+        padding    : 0 0 1.5rem;
 
         b {
             text-transform: uppercase;
@@ -114,6 +114,10 @@ header {
 
     @include desktop {
         grid-template-columns: 1fr 1fr;
+
+        h1.logo {
+            padding: 0;
+        }
     }
 }
 
