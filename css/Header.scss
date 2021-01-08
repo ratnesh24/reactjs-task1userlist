@@ -1,125 +1,131 @@
 header {
-  width: 100vw;
-  height: auto;
-  margin: auto;
-  padding: 1rem;
-  background-color: $gray;
-  color: $white;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  text-align: center;
+    width                : 100vw;
+    height               : auto;
+    margin               : auto;
+    padding              : 1rem;
+    background-color     : $gray;
+    color                : $white;
+    display              : grid;
+    grid-template-columns: 1fr;
+    text-align           : center;
 
-  h1.logo {
-    font-size: 1.4rem;
-    font-weight: 400;
-    margin: 0;
-    padding: 0;
+    h1.logo {
+        font-size  : 1.4rem;
+        font-weight: 400;
+        margin     : 0;
+        padding    : 0;
 
-    b {
-      text-transform: uppercase;
-      font-weight: 800;
-    }
-  }
-
-  nav {
-    display: inline-block;
-    text-align: center;
-    font-size: 1.4rem;
-
-    ul {
-      margin: 0;
-      padding: 0;
-      list-style: none;
-      display: flex;
-      justify-content: center;
-
-      li {
-        padding: 0rem 1.5rem;
-        position: relative;
-
-        a {
-          color: $white;
-          text-decoration: none;
-          border-bottom: 0.1rem solid transparent;
-          transition: all 0.5s ease-in-out;
-
-          &:hover,
-          &:focus,
-          &.active {
-            color: $secondary;
-            border-bottom: 0.1rem solid $secondary;
-          }
+        b {
+            text-transform: uppercase;
+            font-weight   : 800;
         }
+    }
+
+    nav {
+        display   : inline-block;
+        text-align: center;
+        font-size : 1.4rem;
 
         ul {
-          position: absolute;
-          right: 0;
-          top: -130%;
-          background-color: $gray;
-          padding: 0;
-          margin: 1rem 0 0;
-          width: 20rem;
-          opacity: 0;
-          z-index: -20;
-          transition: all 0.5s ease-in-out;
+            margin         : 0;
+            padding        : 0;
+            list-style     : none;
+            display        : flex;
+            justify-content: center;
 
-          li {
-            display: block;
-            padding: 0;
-            width: 100%;
+            li {
+                padding : 0rem 1.5rem;
+                position: relative;
 
-            .profileBox {
-              padding: 2rem 0 0;
-              width: 100%;
+                a {
+                    color          : $white;
+                    text-decoration: none;
+                    border-bottom  : 0.1rem solid transparent;
+                    transition     : all 0.5s ease-in-out;
 
-              strong {
-                display: block;
-                font-size: 1.8rem;
-                padding: 1.5rem 0 0;
-              }
-
-              em {
-                font-size: 1.4rem;
-                padding: 0.5rem 0 1rem;
-                display: block;
-              }
-
-              a.logout {
-                display: block;
-                padding: 0.5rem;
-                background-color: $primary;
-
-                &:hover,
-                &:focus,
-                &:active {
-                  background-color: $accent;
-                  color: $white;
+                    &:hover,
+                    &:focus,
+                    &.active {
+                        color        : $secondary;
+                        border-bottom: 0.1rem solid $secondary;
+                    }
                 }
-              }
-            }
-          }
-        }
 
-        &:hover ul,
-        &:focus ul {
-          opacity: 1;
-          top: 100%;
-          z-index: 999;
+                ul {
+                    position        : absolute;
+                    right           : 0;
+                    top             : -130%;
+                    background-color: $gray;
+                    padding         : 0;
+                    margin          : 1rem 0 0;
+                    width           : 20rem;
+                    opacity         : 0;
+                    z-index         : -20;
+                    transition      : all 0.5s ease-in-out;
+
+                    li {
+                        display: block;
+                        padding: 0;
+                        width  : 100%;
+
+                        .profileBox {
+                            padding: 2rem 0 0;
+                            width  : 100%;
+
+                            strong {
+                                display  : block;
+                                font-size: 1.8rem;
+                                padding  : 1.5rem 0 0;
+                            }
+
+                            em {
+                                font-size: 1.4rem;
+                                padding  : 0.5rem 0 1rem;
+                                display  : block;
+                            }
+
+                            a.logout {
+                                display         : block;
+                                padding         : 0.5rem;
+                                background-color: $primary;
+
+                                &:hover,
+                                &:focus,
+                                &:active {
+                                    background-color: $accent;
+                                    color           : $white;
+                                }
+                            }
+                        }
+                    }
+
+
+                }
+
+                &:hover ul,
+                &:focus ul {
+                    opacity: 1;
+                    top    : 100%;
+                    z-index: 999;
+                }
+            }
         }
-      }
     }
-  }
+
+    @include desktop {
+        grid-template-columns: 1fr 1fr;
+    }
 }
 
 footer {
-  display: block;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  z-index: 9999;
-  width: 100vw;
-  background-color: $gray;
-  color: $white;
-  text-align: center;
-  padding: 1rem 0;
+    display         : block;
+    position        : fixed;
+    bottom          : 0;
+    left            : 0;
+    z-index         : 9999;
+    width           : 100vw;
+    background-color: $gray;
+    color           : $white;
+    text-align      : center;
+    padding         : 1rem 0;
 }
