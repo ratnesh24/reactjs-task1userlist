@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-
+import Header from './Header';
 class UserList extends Component {
 
 
@@ -35,8 +35,6 @@ class UserList extends Component {
             current_page: data.page
         });
     }
-
-
     render() {
 
         let users, renderPageNumbers;
@@ -77,6 +75,7 @@ class UserList extends Component {
 
 
             <>
+                <Header />
                 <h1 className="title">User List</h1>
                 <table className="table" border="0" cellPadding="0" cellSpacing="0">
                     <thead>
@@ -95,9 +94,9 @@ class UserList extends Component {
 
                 <div className="pagination">
                     <ul>
-                        <li onClick={() => this.makeHttpRequestWithPage(1)}>&laquo;</li>
+                        {/* <li onClick={() => this.makeHttpRequestWithPage(1)}>&laquo;</li> */}
                         {renderPageNumbers}
-                        <li onClick={() => this.makeHttpRequestWithPage(1)}>&raquo;</li>
+                        {/* <li onClick={() => this.makeHttpRequestWithPage(2)}>&raquo;</li> */}
                     </ul>
                 </div>
 

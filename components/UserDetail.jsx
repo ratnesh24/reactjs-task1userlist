@@ -1,7 +1,7 @@
 import React from "react";
 //import preloader from "./img/preloader.svg";
 import { Redirect, withRouter } from 'react-router-dom';
-
+import Header from './Header';
 class UserDetail extends React.Component {
     constructor(props) {
         super(props);
@@ -37,6 +37,7 @@ class UserDetail extends React.Component {
                 : (
 
                     <>
+                        <Header />
                         <h1 className="title" style={{ marginTop: "5rem" }}>
                             User Detail for ID: {this.props.match.params.userID}
                         </h1>
