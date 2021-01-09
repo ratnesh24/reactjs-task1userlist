@@ -8,36 +8,37 @@ import UserDetail from "./components/UserDetail";
 import Home from "./Home";
 import Error404 from "./404";
 //import Protected from './components/Protected';
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Route } from "react-router-dom";
+// import { createBrowserHistory } from "history";
+// const history = createBrowserHistory();
 
 function App() {
-  let isLogin = JSON.parse(localStorage.getItem("isLogin"));
+  // let isLogin = JSON.parse(localStorage.getItem('isLogin'))
   return (
     <BrowserRouter>
       <Header />
-      <Switch>
-        {isLogin ? (
-          <>
-            <Route exact path="/" component={Home} />
-            <Route exact path="/home" component={Home} />
-            <Route exact path="/users" component={UserListTop} />
-            <Route exact path="/users/:userID" component={UserDetail} />
-            {/* <Route exact path="/users">
-                <Protected comp={UserListTop} />
-              </Route>
-              <Route exact path="/users/:userID">
-                <Protected comp={UserDetail} />
-                <UserDetail />
-              </Route> */}
-            <Route exact path="/404" component={Error404} />
-          </>
-        ) : (
-          <>
-            <Route exact default path="/" component={Login} />
-            {/* <Route exact default strict path="/login" component={Login} /> */}
-          </>
-        )}
-      </Switch>
+      <Route exact default path="/" component={Login} />
+      <Route exact path="/home" component={Home} />
+      <Route exact path="/users" component={UserListTop} />
+      <Route exact path="/users/:userID" component={UserDetail} />
+      <Route exact path="/404" component={Error404} />
+      {/* <Switch>
+        {
+          isLogin ?
+            <>
+              <Route exact path="/" component={Home} />
+              <Route exact path="/home" component={Home} />
+              <Route exact path="/users" component={UserListTop} />
+              <Route exact path="/users/:userID" component={UserDetail} />
+              <Route exact path="/404" component={Error404} />
+            </>
+            :
+            <>
+              <Route exact default path="/" component={Login} />
+            </>
+        }
+
+      </Switch> */}
       <Footer />
     </BrowserRouter>
   );

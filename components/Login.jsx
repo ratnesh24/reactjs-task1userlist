@@ -1,7 +1,12 @@
+// import React, { Component } from 'react';
 import React, { Component } from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import { Link, Redirect, withRouter } from 'react-router-dom';
 
-export default class Login extends Component {
+// import Header from './Header';
+
+// const history = createBrowserHistory();
+
+class Login extends Component {
     constructor() {
         super()
         this.state = {
@@ -13,7 +18,10 @@ export default class Login extends Component {
             isRegister: false
         }
     }
+
     login() {
+
+
         // alert('Login');
         //console.log("Login", this.state)
         if (this.state.log_email === "") {
@@ -28,16 +36,25 @@ export default class Login extends Component {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ email: this.state.log_email, password: this.state.log_password })
         };
+
         fetch('https://reqres.in/api/login', requestOptions)
             .then(response => response.json())
             .then(data => {
                 console.log("loginResponse", data);
                 console.log("loginToken", data.token);
-                localStorage.setItem("isLogin", JSON.stringify(data.token))
-                data.token
-                    ? localStorage.setItem("isLogin", JSON.stringify(data.token))
-                    : alert("Invalid login");
+                //localStorage.setItem("isLogin", JSON.stringify(data.token))
+                // data.token
+                //     ? localStorage.setItem("isLogin", JSON.stringify(data.token))
+
+                //     : alert("Invalid login");
+                if (data.token) {
+                    localStorage.setItem("isLogin", JSON.stringify(data.token))
+                    this.props.history.push("/home");
+                } else {
+                    alert("Invalid login");
+                }
             });
+
     }
     register() {
         // alert('Register');
@@ -62,7 +79,7 @@ export default class Login extends Component {
             .then(data => {
                 console.log("registerResponse", data);
                 console.log("isLogin", data.token);
-                localStorage.setItem("isLogin", JSON.stringify(data.token))
+                //localStorage.setItem("isLogin", JSON.stringify(data.token))
                 data.token
                     ? localStorage.setItem("isLogin", JSON.stringify(data.token))
                     : alert("Invalid Register");
@@ -70,15 +87,13 @@ export default class Login extends Component {
     }
     render() {
         let isLogin = JSON.parse(localStorage.getItem('isLogin'))
-
         return (
             <>
-                {isLogin ? <Redirect to="/" /> : null}
+                {isLogin ? <Redirect to="/home" /> : null}
                 <div className="container">
                     <div className="row col-xs-1">
                         {
                             !this.state.isRegister ?
-
                                 <div className="form login logReg box">
                                     <h3 className="title">Login</h3>
                                     <input type="email" id="log_email" placeholder="Email ID as username"
@@ -121,3 +136,5 @@ export default class Login extends Component {
         )
     }
 }
+
+export default withRouter(Login);
